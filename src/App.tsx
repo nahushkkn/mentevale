@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
 import SessionPage from './pages/SessionPage';
 import WaitingRoom from './pages/WaitingRoom';
-import PricingPage from './pages/PricingPage';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
 import PrivacyPage from './pages/PrivacyPage';
@@ -22,7 +21,6 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/session/:sessionId" element={<SessionPage />} />
             <Route path="/waiting/:sessionId" element={<WaitingRoom />} />
-            <Route path="/pricing" element={<PricingPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />

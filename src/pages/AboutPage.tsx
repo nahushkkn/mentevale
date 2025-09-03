@@ -1,98 +1,271 @@
-import React from 'react';
-import { BookOpen, Users, Heart, Sparkles } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { BookOpen, Users, Heart, Sparkles, Circle, Handshake, Compass } from 'lucide-react';
 import ParticleBackground from '../components/ParticleBackground';
 
 const AboutPage: React.FC = () => {
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       <ParticleBackground />
       
+      {/* Floating decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-32 right-20 w-24 h-24 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-xl animate-gentle-float" />
+        <div className="absolute top-96 left-10 w-32 h-32 bg-gradient-to-br from-purple-400/8 to-pink-400/8 rounded-full blur-xl animate-gentle-float delay-700" />
+        <div className="absolute bottom-96 right-1/4 w-20 h-20 bg-gradient-to-br from-blue-400/8 to-cyan-400/8 rounded-full blur-xl animate-gentle-float delay-500" />
+      </div>
+      
       <div className="relative z-10 py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <BookOpen className="h-16 w-16 text-amber-400 mx-auto mb-6" />
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              The Story Behind Mentevale
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Hero Section */}
+          <div 
+            ref={(el) => sectionRefs.current[0] = el}
+            className="text-center mb-20 opacity-0"
+          >
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full mb-8 animate-soft-glow">
+              <BookOpen className="h-10 w-10 text-amber-400" />
+            </div>
+            
+            <h1 className="heading-1 mb-6 text-shadow-soft">
+              The Story Behind
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
+                Mentevale
+              </span>
             </h1>
-            <p className="text-xl text-slate-300 leading-relaxed">
-              Building bridges through the ancient art of shared storytelling
+            
+            <p className="body-large max-w-3xl mx-auto text-center">
+              Building bridges through the ancient art of shared storytelling, 
+              where every voice matters and every story creates connection.
             </p>
           </div>
 
-          <div className="space-y-12">
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
-              <h2 className="text-2xl font-semibold text-white mb-4 flex items-center">
-                <Heart className="h-6 w-6 text-red-400 mr-3" />
-                Our Mission
-              </h2>
-              <p className="text-slate-300 leading-relaxed text-lg">
-                In a world increasingly connected yet emotionally distant, Mentevale creates sacred spaces 
-                for authentic human connection. We believe that storytelling is humanity's oldest technology 
-                for building empathy, understanding, and community. Through AI-guided circles, we're reviving 
-                this ancient practice for the modern world.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
-                <Users className="h-10 w-10 text-amber-400 mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-4">Intimate Connection</h3>
-                <p className="text-slate-300 leading-relaxed">
-                  Small circles of 3-5 participants create the perfect environment for vulnerable sharing 
-                  and deep listening. Every voice matters, every story has value.
-                </p>
+          {/* Mission Section */}
+          <div 
+            ref={(el) => sectionRefs.current[1] = el}
+            className="mb-20 opacity-0 delay-200"
+          >
+            <div className="card-warm max-w-4xl mx-auto">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-red-400/20 to-pink-400/20 rounded-full flex items-center justify-center mr-4">
+                  <Heart className="h-6 w-6 text-red-400" />
+                </div>
+                <h2 className="heading-2">Our Mission</h2>
               </div>
-
-              <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
-                <Sparkles className="h-10 w-10 text-amber-400 mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-4">AI-Guided Wisdom</h3>
-                <p className="text-slate-300 leading-relaxed">
-                  Our AI facilitator doesn't replace human connection—it enhances it. By weaving 
-                  individual stories into collective narratives, it reveals patterns and wisdom 
-                  that emerge naturally from shared experience.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl p-8 border border-amber-500/30">
-              <h2 className="text-2xl font-semibold text-white mb-6 text-center">
-                The Five-Phase Journey
-              </h2>
               
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+              <div className="story-text space-y-6">
+                <p>
+                  In a world increasingly connected yet emotionally distant, Mentevale creates 
+                  sacred spaces for authentic human connection. We believe that storytelling is 
+                  humanity's oldest technology for building empathy, understanding, and community.
+                </p>
+                
+                <p>
+                  Through AI-guided circles, we're reviving this ancient practice for the modern world, 
+                  where busy professionals, students, nomads, and wisdom keepers can pause, reflect, 
+                  and share the stories that shape who we are.
+                </p>
+                
+                <blockquote className="quote-text border-l-4 border-amber-400/50 pl-6 my-8">
+                  "Every story shared is a bridge built between hearts, 
+                  every circle a sanctuary where vulnerability becomes strength."
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          {/* Values Grid */}
+          <div 
+            ref={(el) => sectionRefs.current[2] = el}
+            className="mb-20 opacity-0 delay-300"
+          >
+            <h2 className="heading-2 text-center mb-12">What We Believe</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="card-warm group">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-6 w-6 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="heading-3 mb-3">Intimate Connection</h3>
+                    <p className="body-regular">
+                      Small circles of 3-5 participants create the perfect environment for vulnerable sharing 
+                      and deep listening. Every voice matters, every story has value, and every person 
+                      deserves to be truly heard.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-warm group">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Sparkles className="h-6 w-6 text-purple-400" />
+                  </div>
+                  <div>
+                    <h3 className="heading-3 mb-3">AI-Enhanced Wisdom</h3>
+                    <p className="body-regular">
+                      Our AI facilitator doesn't replace human connection—it enhances it. By weaving 
+                      individual stories into collective narratives, it reveals patterns and wisdom 
+                      that emerge naturally from shared experience.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-warm group">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Circle className="h-6 w-6 text-green-400" />
+                  </div>
+                  <div>
+                    <h3 className="heading-3 mb-3">Sacred Space</h3>
+                    <p className="body-regular">
+                      Every circle begins with intention-setting and ends with blessing. We honor the 
+                      courage it takes to share authentically and create containers where vulnerability 
+                      is met with compassion.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-warm group">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Handshake className="h-6 w-6 text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="heading-3 mb-3">Building Bridges</h3>
+                    <p className="body-regular">
+                      Stories connect us across differences of age, culture, and experience. Through 
+                      sharing our journeys, we discover the universal threads that bind all human hearts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* The Journey Section */}
+          <div 
+            ref={(el) => sectionRefs.current[3] = el}
+            className="mb-20 opacity-0 delay-400"
+          >
+            <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 rounded-3xl p-8 border border-amber-500/20">
+              <h2 className="heading-2 text-center mb-8">The Five-Phase Journey</h2>
+              <p className="body-large text-center mb-10 text-amber-100">
+                Each circle follows a sacred rhythm designed to create safety, inspire sharing, 
+                and weave individual stories into collective wisdom.
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-6">
                 {[
-                  { name: 'Induction', time: '5 min', desc: 'Sacred space creation' },
-                  { name: 'Anchor', time: '5 min', desc: 'AI story & prompt' },
-                  { name: 'Reflection', time: '30 min', desc: 'Personal sharing' },
-                  { name: 'Weaving', time: '15 min', desc: 'Collective narrative' },
-                  { name: 'Closure', time: '5 min', desc: 'Blessing & departure' },
+                  { 
+                    name: 'Induction', 
+                    time: '5 min', 
+                    desc: 'Creating sacred space together',
+                    icon: Compass,
+                    color: 'from-purple-400 to-purple-500'
+                  },
+                  { 
+                    name: 'Anchor', 
+                    time: '5 min', 
+                    desc: 'AI story sets the theme',
+                    icon: BookOpen,
+                    color: 'from-blue-400 to-blue-500'
+                  },
+                  { 
+                    name: 'Reflection', 
+                    time: '30 min', 
+                    desc: 'Hearts open through sharing',
+                    icon: Heart,
+                    color: 'from-red-400 to-pink-500'
+                  },
+                  { 
+                    name: 'Weaving', 
+                    time: '15 min', 
+                    desc: 'Stories become collective wisdom',
+                    icon: Sparkles,
+                    color: 'from-amber-400 to-orange-500'
+                  },
+                  { 
+                    name: 'Closure', 
+                    time: '5 min', 
+                    desc: 'Blessing and gratitude',
+                    icon: Circle,
+                    color: 'from-green-400 to-emerald-500'
+                  },
                 ].map((phase, index) => (
-                  <div key={index} className="text-center">
-                    <div className="w-12 h-12 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold mb-2 mx-auto">
-                      {index + 1}
+                  <div key={index} className="text-center group">
+                    <div className="relative mb-4">
+                      <div className={`w-16 h-16 bg-gradient-to-br ${phase.color} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300 shadow-lg`}>
+                        <phase.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-slate-900 rounded-full flex items-center justify-center text-sm font-bold">
+                        {index + 1}
+                      </div>
                     </div>
-                    <h4 className="text-white font-medium mb-1">{phase.name}</h4>
-                    <p className="text-amber-200 text-sm font-medium mb-1">{phase.time}</p>
-                    <p className="text-slate-300 text-xs">{phase.desc}</p>
+                    <h4 className="heading-4 mb-1">{phase.name}</h4>
+                    <p className="text-amber-200 text-sm font-medium mb-2">{phase.time}</p>
+                    <p className="body-small text-slate-300">{phase.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-white mb-4">
-                Ready to Begin Your Journey?
-              </h2>
-              <p className="text-slate-300 mb-8">
-                Join thousands who have discovered the power of shared storytelling
+          {/* Call to Action */}
+          <div 
+            ref={(el) => sectionRefs.current[4] = el}
+            className="text-center opacity-0 delay-500"
+          >
+            <div className="max-w-2xl mx-auto">
+              <h2 className="heading-2 mb-6">Ready to Begin Your Journey?</h2>
+              <p className="body-large mb-8 text-slate-300">
+                Join thousands who have discovered the transformative power of shared storytelling. 
+                Your story matters, and your voice is needed in our circles.
               </p>
-              <a 
-                href="/"
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-amber-400 hover:to-orange-400 transition-all duration-300 transform hover:scale-105"
-              >
-                <BookOpen className="h-5 w-5" />
-                <span>Join a Circle</span>
-              </a>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="/"
+                  className="btn-primary inline-flex items-center justify-center space-x-2"
+                >
+                  <BookOpen className="h-5 w-5" />
+                  <span>Join a Circle</span>
+                </a>
+                
+                <a 
+                  href="/contact"
+                  className="btn-secondary inline-flex items-center justify-center space-x-2"
+                >
+                  <Heart className="h-5 w-5" />
+                  <span>Get in Touch</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
