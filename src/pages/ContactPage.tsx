@@ -135,6 +135,23 @@ const ContactPage: React.FC = () => {
                       required
                     />
                   </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full p-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                </div>
                 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2">
@@ -343,20 +360,4 @@ const ContactPage: React.FC = () => {
   );
 };
 
-export default ContactPage;  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full p-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
-                      placeholder="your@email.com"
-                      required
-                    />
-                  </div>
-                </div>
+export default ContactPage;
