@@ -54,10 +54,10 @@ const ContactPage: React.FC = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="text-center max-w-2xl mx-auto animate-scale-in">
           <div className="w-20 h-20 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-soft-glow">
-            <Heart className="h-10 w-10 text-green-400" />
+            <Heart className="h-10 w-10 text-green-500" />
           </div>
           <h1 className="heading-1 mb-6">Thank You!</h1>
           <p className="body-large mb-8">
@@ -73,12 +73,12 @@ const ContactPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-20 relative overflow-hidden">
       {/* Floating decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-40 right-10 w-32 h-32 bg-gradient-to-br from-amber-400/8 to-orange-400/8 rounded-full blur-xl animate-gentle-float" />
-        <div className="absolute bottom-40 left-20 w-24 h-24 bg-gradient-to-br from-purple-400/8 to-pink-400/8 rounded-full blur-xl animate-gentle-float delay-700" />
-        <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-gradient-to-br from-blue-400/6 to-cyan-400/6 rounded-full blur-xl animate-gentle-float delay-300" />
+        <div className="absolute top-40 right-10 w-32 h-32 bg-gradient-to-br from-blue-300/8 to-indigo-300/8 rounded-full blur-xl animate-gentle-float" />
+        <div className="absolute bottom-40 left-20 w-24 h-24 bg-gradient-to-br from-purple-300/8 to-pink-300/8 rounded-full blur-xl animate-gentle-float delay-700" />
+        <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-gradient-to-br from-cyan-300/6 to-blue-300/6 rounded-full blur-xl animate-gentle-float delay-300" />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -88,13 +88,13 @@ const ContactPage: React.FC = () => {
           ref={(el) => sectionRefs.current[0] = el}
           className="text-center mb-16 opacity-0"
         >
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full mb-8 animate-soft-glow">
-            <Mail className="h-10 w-10 text-amber-400" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full mb-8 animate-soft-glow">
+            <Mail className="h-10 w-10 text-blue-500" />
           </div>
           
           <h1 className="heading-1 mb-6 text-shadow-soft">
             Let's Start a
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               Conversation
             </span>
           </h1>
@@ -114,14 +114,14 @@ const ContactPage: React.FC = () => {
           >
             <div className="card-warm">
               <div className="flex items-center mb-6">
-                <MessageSquare className="h-6 w-6 text-amber-400 mr-3" />
+                <MessageSquare className="h-6 w-6 text-blue-500 mr-3" />
                 <h2 className="heading-2">Share Your Thoughts</h2>
               </div>
               
               <form onSubmit={handleSubmit} className="spacing-comfortable">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
                       Your Name
                     </label>
                     <input
@@ -130,14 +130,14 @@ const ContactPage: React.FC = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full p-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
+                      className="w-full p-4 bg-white/50 border border-slate-300 rounded-xl text-slate-800 placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="What should we call you?"
                       required
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
                       Email Address
                     </label>
                     <input
@@ -146,7 +146,7 @@ const ContactPage: React.FC = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full p-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
+                      className="w-full p-4 bg-white/50 border border-slate-300 rounded-xl text-slate-800 placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                       placeholder="your@email.com"
                       required
                     />
@@ -154,7 +154,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
                     What's on your mind?
                   </label>
                   <select
@@ -162,7 +162,7 @@ const ContactPage: React.FC = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full p-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
+                    className="w-full p-4 bg-white/50 border border-slate-300 rounded-xl text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                     required
                   >
                     <option value="">Choose a topic...</option>
@@ -176,7 +176,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -185,7 +185,7 @@ const ContactPage: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className="w-full p-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 resize-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300"
+                    className="w-full p-4 bg-white/50 border border-slate-300 rounded-xl text-slate-800 placeholder-slate-500 resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                     placeholder="Tell us your story... We're listening with open hearts."
                     required
                   />
@@ -194,7 +194,7 @@ const ContactPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white py-4 rounded-xl font-semibold hover:from-amber-400 hover:to-orange-400 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center space-x-2 relative overflow-hidden group"
+                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 rounded-xl font-semibold hover:from-blue-400 hover:to-indigo-500 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center space-x-2 relative overflow-hidden group"
                 >
                   {isSubmitting ? (
                     <>
@@ -223,40 +223,40 @@ const ContactPage: React.FC = () => {
             >
               <div className="card-warm">
                 <div className="flex items-center mb-6">
-                  <Coffee className="h-6 w-6 text-amber-400 mr-3" />
+                  <Coffee className="h-6 w-6 text-blue-500 mr-3" />
                   <h2 className="heading-2">Ways to Connect</h2>
                 </div>
                 
                 <div className="spacing-comfortable">
                   <div className="flex items-start space-x-4 group">
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <MessageSquare className="h-6 w-6 text-blue-400" />
+                      <MessageSquare className="h-6 w-6 text-blue-500" />
                     </div>
                     <div>
                       <h3 className="heading-4 mb-1">Community Support</h3>
-                      <p className="body-regular text-amber-300 mb-1">hello@mentevale.com</p>
+                      <p className="body-regular text-blue-600 mb-1">hello@mentehub.com</p>
                       <p className="body-small">We respond with care within 24 hours</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4 group">
                     <div className="w-12 h-12 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Phone className="h-6 w-6 text-green-400" />
+                      <Phone className="h-6 w-6 text-green-500" />
                     </div>
                     <div>
                       <h3 className="heading-4 mb-1">Warm Conversations</h3>
-                      <p className="body-regular text-amber-300 mb-1">+1 (555) 123-4567</p>
+                      <p className="body-regular text-blue-600 mb-1">+1 (555) 123-4567</p>
                       <p className="body-small">Monday - Friday, 9 AM - 5 PM EST</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start space-x-4 group">
                     <div className="w-12 h-12 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <MapPin className="h-6 w-6 text-purple-400" />
+                      <MapPin className="h-6 w-6 text-purple-500" />
                     </div>
                     <div>
                       <h3 className="heading-4 mb-1">Our Heart</h3>
-                      <p className="body-regular text-amber-300 mb-1">San Francisco, CA</p>
+                      <p className="body-regular text-blue-600 mb-1">San Francisco, CA</p>
                       <p className="body-small">Building community worldwide</p>
                     </div>
                   </div>
@@ -269,15 +269,15 @@ const ContactPage: React.FC = () => {
               ref={(el) => sectionRefs.current[3] = el}
               className="opacity-0 delay-400"
             >
-              <div className="bg-gradient-to-br from-amber-500/15 via-orange-500/15 to-amber-500/15 rounded-2xl p-8 border border-amber-500/30 relative overflow-hidden">
+              <div className="bg-gradient-to-br from-blue-500/15 via-indigo-500/15 to-blue-500/15 rounded-2xl p-8 border border-blue-500/30 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-2xl" />
                 <div className="relative z-10">
                   <div className="flex items-center mb-4">
-                    <Users className="h-6 w-6 text-amber-400 mr-3" />
+                    <Users className="h-6 w-6 text-blue-500 mr-3" />
                     <h3 className="heading-3">Join Our Story</h3>
                   </div>
                   
-                  <p className="body-regular text-amber-100 mb-6 leading-relaxed">
+                  <p className="body-regular text-blue-700 mb-6 leading-relaxed">
                     Follow along as we build something beautiful together. Get storytelling tips, 
                     community highlights, and updates about new themes and features.
                   </p>
@@ -285,19 +285,19 @@ const ContactPage: React.FC = () => {
                   <div className="flex flex-wrap gap-4">
                     <a 
                       href="#" 
-                      className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
+                      className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-slate-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
                     >
                       <span>Twitter</span>
                     </a>
                     <a 
                       href="#" 
-                      className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
+                      className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-slate-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
                     >
                       <span>LinkedIn</span>
                     </a>
                     <a 
                       href="#" 
-                      className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
+                      className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 text-slate-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105"
                     >
                       <span>Instagram</span>
                     </a>
@@ -311,7 +311,7 @@ const ContactPage: React.FC = () => {
               ref={(el) => sectionRefs.current[4] = el}
               className="opacity-0 delay-500"
             >
-              <div className="bg-slate-800/30 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+              <div className="bg-white/30 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full flex items-center justify-center">
                     <Heart className="h-5 w-5 text-white" />
@@ -321,13 +321,13 @@ const ContactPage: React.FC = () => {
                   </div>
                 </div>
                 
-                <p className="body-small text-slate-300 italic leading-relaxed">
+                <p className="body-small text-slate-600 italic leading-relaxed">
                   "Behind every message is a human story. Behind every question is genuine curiosity. 
                   We read every word with attention and respond with the same care we bring to our circles."
                 </p>
                 
-                <p className="body-small text-amber-300 mt-3">
-                  — The Mentevale Team
+                <p className="body-small text-blue-600 mt-3 font-medium">
+                  — The mentehub Team
                 </p>
               </div>
             </div>
@@ -343,8 +343,8 @@ const ContactPage: React.FC = () => {
             <h2 className="heading-2 mb-4">
               Ready to Experience a Circle?
             </h2>
-            <p className="body-regular text-slate-300 mb-6">
-              The best way to understand Mentevale is to join us. Your first circle is always free.
+            <p className="body-regular text-slate-600 mb-6">
+              The best way to understand mentehub is to join us. Your first circle is always free.
             </p>
             <a 
               href="/"

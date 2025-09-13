@@ -1,118 +1,152 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', 'Source Sans 3', system-ui, sans-serif;
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
-    @apply text-slate-300;
+    /* CHANGED: From dark slate to light blue gradient */
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100;
+    /* CHANGED: From light text to dark text */
+    @apply text-slate-700;
     @apply antialiased;
     line-height: 1.6;
   }
   
-  /* Wellness-focused typography hierarchy */
+  /* Wellness-focused typography hierarchy - BIGGER SIZES */
   h1, .heading-1 {
-    font-family: 'Crimson Text', serif;
-    @apply text-4xl sm:text-5xl lg:text-6xl font-semibold text-white;
+    /* CHANGED: From Crimson Text to Source Sans 3 */
+    font-family: 'Source Sans 3', 'Inter', sans-serif;
+    /* CHANGED: Increased sizes - was text-4xl sm:text-5xl lg:text-6xl */
+    @apply text-5xl sm:text-6xl lg:text-7xl font-semibold;
+    /* CHANGED: From white to slate-800 */
+    @apply text-slate-800;
     line-height: 1.1;
     letter-spacing: -0.025em;
   }
   
   h2, .heading-2 {
-    font-family: 'Crimson Text', serif;
-    @apply text-2xl sm:text-3xl lg:text-4xl font-semibold text-white;
+    /* CHANGED: From Crimson Text to Source Sans 3 */
+    font-family: 'Source Sans 3', 'Inter', sans-serif;
+    /* CHANGED: Increased sizes - was text-2xl sm:text-3xl lg:text-4xl */
+    @apply text-3xl sm:text-4xl lg:text-5xl font-semibold;
+    /* CHANGED: From white to slate-800 */
+    @apply text-slate-800;
     line-height: 1.2;
     letter-spacing: -0.02em;
   }
   
   h3, .heading-3 {
     font-family: 'Inter', sans-serif;
-    @apply text-xl sm:text-2xl font-medium text-white;
+    /* CHANGED: Increased sizes - was text-xl sm:text-2xl */
+    @apply text-xl sm:text-2xl lg:text-3xl font-medium;
+    /* CHANGED: From white to slate-800 */
+    @apply text-slate-800;
     line-height: 1.3;
     letter-spacing: -0.015em;
   }
   
   h4, .heading-4 {
     font-family: 'Inter', sans-serif;
-    @apply text-lg font-medium text-white;
+    /* CHANGED: Increased size - was text-lg */
+    @apply text-lg sm:text-xl font-medium;
+    /* CHANGED: From white to slate-800 */
+    @apply text-slate-800;
     line-height: 1.4;
   }
   
   /* Body text variations */
   .body-large {
-    @apply text-lg text-slate-300;
+    /* CHANGED: From slate-300 to slate-600 */
+    @apply text-lg text-slate-600;
     line-height: 1.7;
   }
   
   .body-regular {
-    @apply text-base text-slate-300;
+    /* CHANGED: From slate-300 to slate-600 */
+    @apply text-base text-slate-600;
     line-height: 1.6;
   }
   
   .body-small {
-    @apply text-sm text-slate-400;
+    /* CHANGED: From slate-400 to slate-500 */
+    @apply text-sm text-slate-500;
     line-height: 1.5;
   }
   
   /* Storytelling-specific styles */
   .story-text {
-    font-family: 'Source Serif Pro', serif;
-    @apply text-slate-200 leading-relaxed;
+    /* CHANGED: From Source Serif Pro to Source Sans 3 */
+    font-family: 'Source Sans 3', serif;
+    /* CHANGED: From slate-200 to slate-700 */
+    @apply text-slate-700 leading-relaxed;
     font-size: 1.125rem;
     line-height: 1.8;
   }
   
   .quote-text {
-    font-family: 'Crimson Text', serif;
-    @apply text-slate-100 italic text-lg;
+    /* CHANGED: From Crimson Text to Source Sans 3 */
+    font-family: 'Source Sans 3', serif;
+    /* CHANGED: From slate-100 to slate-600 */
+    @apply text-slate-600 italic text-lg;
     line-height: 1.7;
   }
   
-  /* Warm, welcoming button styles */
+  /* CHANGED: From amber/orange to blue/indigo button styles */
   .btn-primary {
-    @apply bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full font-medium;
-    @apply hover:from-amber-400 hover:to-orange-400 transition-all duration-300;
+    /* CHANGED: From amber-500 to-orange-500 to blue-500 to-indigo-600 */
+    @apply bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-full font-medium;
+    /* CHANGED: From amber-400 to-orange-400 to blue-400 to-indigo-500 */
+    @apply hover:from-blue-400 hover:to-indigo-500 transition-all duration-300;
     @apply transform hover:scale-105 shadow-lg hover:shadow-xl;
     font-family: 'Inter', sans-serif;
   }
   
   .btn-secondary {
-    @apply border border-slate-600 text-slate-300 px-6 py-3 rounded-full font-medium;
-    @apply hover:bg-slate-800 hover:text-white hover:border-slate-500 transition-all duration-300;
+    /* CHANGED: From slate-600 to slate-300, slate-300 to slate-700 */
+    @apply border border-slate-300 text-slate-700 px-6 py-3 rounded-full font-medium;
+    /* CHANGED: From slate-800 to slate-100, white to slate-800, slate-500 to slate-400 */
+    @apply hover:bg-slate-100 hover:text-slate-800 hover:border-slate-400 transition-all duration-300;
     font-family: 'Inter', sans-serif;
   }
   
   .btn-ghost {
-    @apply text-slate-300 hover:text-white px-4 py-2 rounded-lg;
-    @apply hover:bg-slate-800/50 transition-all duration-200;
+    /* CHANGED: From slate-300 hover:text-white to slate-600 hover:text-slate-800 */
+    @apply text-slate-600 hover:text-slate-800 px-4 py-2 rounded-lg;
+    /* CHANGED: From slate-800/50 to slate-100/50 */
+    @apply hover:bg-slate-100/50 transition-all duration-200;
     font-family: 'Inter', sans-serif;
   }
 }
 
 @layer components {
-  /* Card styles with warm gradients */
+  /* CHANGED: Card styles from dark to light gradients */
   .card-warm {
-    @apply bg-gradient-to-br from-slate-800/60 to-slate-800/40 backdrop-blur-sm;
-    @apply border border-slate-700/50 rounded-2xl p-6;
-    @apply hover:border-amber-500/30 transition-all duration-500;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* CHANGED: From slate-800/60 to-slate-800/40 to white/80 to-blue-50/60 */
+    @apply bg-gradient-to-br from-white/80 to-blue-50/60 backdrop-blur-sm;
+    /* CHANGED: From slate-700/50 to slate-200/50 */
+    @apply border border-slate-200/50 rounded-2xl p-6;
+    /* CHANGED: From amber-500/30 to blue-300/50 */
+    @apply hover:border-blue-300/50 transition-all duration-500;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
   
   .card-warm:hover {
-    box-shadow: 0 8px 30px rgba(251, 191, 36, 0.1);
+    /* CHANGED: From amber glow to blue glow */
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.12);
     transform: translateY(-2px);
   }
   
   /* Glass morphism effects */
   .glass-effect {
-    @apply bg-white/5 backdrop-blur-sm border border-white/10;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* CHANGED: From white/5 to white/20, white/10 to white/30 */
+    @apply bg-white/20 backdrop-blur-sm border border-white/30;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
   
   /* Gentle animations */
@@ -145,11 +179,13 @@
   
   /* Text shadows for depth */
   .text-shadow-soft {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* CHANGED: From rgba(0, 0, 0, 0.3) to rgba(0, 0, 0, 0.1) */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
   .text-shadow-warm {
-    text-shadow: 0 2px 15px rgba(251, 191, 36, 0.2);
+    /* CHANGED: From amber to blue */
+    text-shadow: 0 2px 15px rgba(59, 130, 246, 0.2);
   }
 }
 
@@ -165,8 +201,9 @@
 }
 
 @keyframes softGlow {
-  0% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.2); }
-  100% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.4); }
+  /* CHANGED: From amber to blue */
+  0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+  100% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
 }
 
 @keyframes fadeInUp {
@@ -230,7 +267,8 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  @apply outline-none ring-2 ring-amber-400/50 ring-offset-2 ring-offset-slate-900;
+  /* CHANGED: From amber-400/50 ring-offset-slate-900 to blue-400/50 ring-offset-slate-50 */
+  @apply outline-none ring-2 ring-blue-400/50 ring-offset-2 ring-offset-slate-50;
 }
 
 /* Smooth transitions */

@@ -27,14 +27,14 @@ const AboutPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <ParticleBackground />
       
       {/* Floating decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-32 right-20 w-24 h-24 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-xl animate-gentle-float" />
-        <div className="absolute top-96 left-10 w-32 h-32 bg-gradient-to-br from-purple-400/8 to-pink-400/8 rounded-full blur-xl animate-gentle-float delay-700" />
-        <div className="absolute bottom-96 right-1/4 w-20 h-20 bg-gradient-to-br from-blue-400/8 to-cyan-400/8 rounded-full blur-xl animate-gentle-float delay-500" />
+        <div className="absolute top-32 right-20 w-24 h-24 bg-gradient-to-br from-blue-300/10 to-indigo-300/10 rounded-full blur-xl animate-gentle-float" />
+        <div className="absolute top-96 left-10 w-32 h-32 bg-gradient-to-br from-purple-300/8 to-pink-300/8 rounded-full blur-xl animate-gentle-float delay-700" />
+        <div className="absolute bottom-96 right-1/4 w-20 h-20 bg-gradient-to-br from-cyan-300/8 to-blue-300/8 rounded-full blur-xl animate-gentle-float delay-500" />
       </div>
       
       <div className="relative z-10 py-20">
@@ -45,14 +45,14 @@ const AboutPage: React.FC = () => {
             ref={(el) => sectionRefs.current[0] = el}
             className="text-center mb-20 opacity-0"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full mb-8 animate-soft-glow">
-              <BookOpen className="h-10 w-10 text-amber-400" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full mb-8 animate-soft-glow">
+              <BookOpen className="h-10 w-10 text-blue-500" />
             </div>
             
             <h1 className="heading-1 mb-6 text-shadow-soft">
               The Story Behind
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
-                Mentevale
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                mentehub
               </span>
             </h1>
             
@@ -70,14 +70,14 @@ const AboutPage: React.FC = () => {
             <div className="card-warm max-w-4xl mx-auto">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-red-400/20 to-pink-400/20 rounded-full flex items-center justify-center mr-4">
-                  <Heart className="h-6 w-6 text-red-400" />
+                  <Heart className="h-6 w-6 text-red-500" />
                 </div>
                 <h2 className="heading-2">Our Mission</h2>
               </div>
               
               <div className="story-text space-y-6">
                 <p>
-                  In a world increasingly connected yet emotionally distant, Mentevale creates 
+                  In a world increasingly connected yet emotionally distant, mentehub creates 
                   sacred spaces for authentic human connection. We believe that storytelling is 
                   humanity's oldest technology for building empathy, understanding, and community.
                 </p>
@@ -88,7 +88,7 @@ const AboutPage: React.FC = () => {
                   and share the stories that shape who we are.
                 </p>
                 
-                <blockquote className="quote-text border-l-4 border-amber-400/50 pl-6 my-8">
+                <blockquote className="quote-text border-l-4 border-blue-400/50 pl-6 my-8">
                   "Every story shared is a bridge built between hearts, 
                   every circle a sanctuary where vulnerability becomes strength."
                 </blockquote>
@@ -106,8 +106,8 @@ const AboutPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="card-warm group">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <Users className="h-6 w-6 text-amber-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Users className="h-6 w-6 text-blue-500" />
                   </div>
                   <div>
                     <h3 className="heading-3 mb-3">Intimate Connection</h3>
@@ -123,7 +123,7 @@ const AboutPage: React.FC = () => {
               <div className="card-warm group">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <Sparkles className="h-6 w-6 text-purple-400" />
+                    <Sparkles className="h-6 w-6 text-purple-500" />
                   </div>
                   <div>
                     <h3 className="heading-3 mb-3">AI-Enhanced Wisdom</h3>
@@ -139,7 +139,7 @@ const AboutPage: React.FC = () => {
               <div className="card-warm group">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <Circle className="h-6 w-6 text-green-400" />
+                    <Circle className="h-6 w-6 text-green-500" />
                   </div>
                   <div>
                     <h3 className="heading-3 mb-3">Sacred Space</h3>
@@ -154,8 +154,8 @@ const AboutPage: React.FC = () => {
 
               <div className="card-warm group">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <Handshake className="h-6 w-6 text-blue-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <Handshake className="h-6 w-6 text-cyan-500" />
                   </div>
                   <div>
                     <h3 className="heading-3 mb-3">Building Bridges</h3>
@@ -174,9 +174,9 @@ const AboutPage: React.FC = () => {
             ref={(el) => sectionRefs.current[3] = el}
             className="mb-20 opacity-0 delay-400"
           >
-            <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 rounded-3xl p-8 border border-amber-500/20">
+            <div className="bg-gradient-to-r from-blue-400/10 via-indigo-400/10 to-blue-400/10 rounded-3xl p-8 border border-blue-400/20">
               <h2 className="heading-2 text-center mb-8">The Five-Phase Journey</h2>
-              <p className="body-large text-center mb-10 text-amber-100">
+              <p className="body-large text-center mb-10 text-blue-700">
                 Each circle follows a sacred rhythm designed to create safety, inspire sharing, 
                 and weave individual stories into collective wisdom.
               </p>
@@ -209,7 +209,7 @@ const AboutPage: React.FC = () => {
                     time: '15 min', 
                     desc: 'Stories become collective wisdom',
                     icon: Sparkles,
-                    color: 'from-amber-400 to-orange-500'
+                    color: 'from-indigo-400 to-blue-500'
                   },
                   { 
                     name: 'Closure', 
@@ -224,13 +224,13 @@ const AboutPage: React.FC = () => {
                       <div className={`w-16 h-16 bg-gradient-to-br ${phase.color} rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-all duration-300 shadow-lg`}>
                         <phase.icon className="h-8 w-8 text-white" />
                       </div>
-                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-slate-900 rounded-full flex items-center justify-center text-sm font-bold">
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-slate-700 rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                     </div>
                     <h4 className="heading-4 mb-1">{phase.name}</h4>
-                    <p className="text-amber-200 text-sm font-medium mb-2">{phase.time}</p>
-                    <p className="body-small text-slate-300">{phase.desc}</p>
+                    <p className="text-blue-600 text-sm font-medium mb-2">{phase.time}</p>
+                    <p className="body-small text-slate-600">{phase.desc}</p>
                   </div>
                 ))}
               </div>
@@ -244,7 +244,7 @@ const AboutPage: React.FC = () => {
           >
             <div className="max-w-2xl mx-auto">
               <h2 className="heading-2 mb-6">Ready to Begin Your Journey?</h2>
-              <p className="body-large mb-8 text-slate-300">
+              <p className="body-large mb-8 text-slate-600">
                 Join thousands who have discovered the transformative power of shared storytelling. 
                 Your story matters, and your voice is needed in our circles.
               </p>
