@@ -125,7 +125,7 @@ const WaitingRoom: React.FC = () => {
                     <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center">
                       <span className="text-slate-400 text-xs">?</span>
                     </div>
-                    <span className="ml-3 text-slate-400">Waiting for storyteller...</span>
+                    <span className="ml-3 text-slate-400">Waiting for participant...</span>
                   </div>
                 ))}
               </div>
