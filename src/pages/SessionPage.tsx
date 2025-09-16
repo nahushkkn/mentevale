@@ -187,14 +187,14 @@ const createArtificialParticipants = (count: number): Participant[] => {
   return participants;
 };
 
-// Session themes
+// Session themes - Removed redundant titles
 const SESSION_THEMES = {
-  'anxiety': 'Finding Calm',
-  'burnout': 'Rekindling Energy', 
-  'loneliness': 'Building Connection',
-  'wisdom': 'Life Lessons',
+  'anxiety': 'Anxiety',
+  'burnout': 'Burnout', 
+  'loneliness': 'Loneliness',
+  'wisdom': 'Wisdom',
   'wlb': 'Work-Life Balance',
-  'transitions': 'Navigating Change',
+  'transitions': 'Life Transitions',
   'default': 'Meaningful Conversations'
 };
 
@@ -442,15 +442,16 @@ const SessionPage: React.FC = () => {
 
   const currentUser = participants.find(p => p.id === 'user');
   const currentCard = currentUser?.flashCards?.cards[currentUser.flashCards.current];
+  const otherParticipants = participants.filter(p => p.id !== 'user');
 
   return (
     <div className="h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex flex-col overflow-hidden">
       
-      {/* Top Bar */}
+      {/* Top Bar - Simplified */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-slate-200/50 p-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-lg font-semibold text-slate-800">{themeTitle}</h1>
+            <h1 className="text-lg font-semibold text-slate-800">{themeTitle} Circle</h1>
             <div className="flex items-center space-x-2 text-sm text-slate-600">
               <Users className="h-4 w-4" />
               <span>{participants.length} participants</span>
@@ -473,122 +474,163 @@ const SessionPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Session Area - Circle Layout */}
-      <div className="flex-1 p-6 flex items-center justify-center">
-        <div className="relative w-full max-w-6xl h-full">
+      {/* Main Session Area - Improved Layout */}
+      <div className="flex-1 p-6">
+        <div className="h-full max-w-7xl mx-auto flex">
           
-          {/* Circular Layout */}
-          <div className="relative w-full h-full flex items-center justify-center">
-            
-            {/* Center Flash Card for Current User */}
-            {sessionStarted && currentCard && (
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-lg w-full mx-4">
-                  <div className="text-center mb-6">
-                    <h3 className="text-lg font-semibold text-slate-800 mb-2">Your Current Question</h3>
-                    <div className="text-sm text-slate-600">
-                      Card {(currentUser?.flashCards?.current || 0) + 1} of {currentUser?.flashCards?.cards.length || 3}
+          {/* Left Video Panel */}
+          <div className="w-48 flex flex-col space-y-4 mr-6">
+            {otherParticipants.slice(0, Math.ceil(otherParticipants.length / 2)).map((participant) => (
+              <div key={participant.id} className="relative">
+                {/* Video Window */}
+                <div className={`w-full aspect-[4/3] bg-gradient-to-br from-slate-200 to-slate-300 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                  participant.isSpeaking ? 'border-green-400 shadow-lg shadow-green-400/20 scale-105' : 'border-slate-200'
+                }`}>
+                  {participant.hasVideo ? (
+                    <div className={`w-full h-full bg-gradient-to-br flex items-center justify-center ${
+                      participant.id === 'ai-0' ? 'from-pink-400 to-rose-500' :
+                      participant.id === 'ai-1' ? 'from-green-400 to-emerald-500' :
+                      participant.id === 'ai-2' ? 'from-purple-400 to-violet-500' :
+                      participant.id === 'ai-3' ? 'from-yellow-400 to-orange-500' :
+                      'from-teal-400 to-cyan-500'
+                    }`}>
+                      <span className="text-white text-2xl font-bold">
+                        {participant.name.charAt(0)}
+                      </span>
                     </div>
-                  </div>
-                  
-                  <ScratchCard
-                    question={currentCard.question}
-                    category={currentCard.category}
-                    isRevealed={currentCard.isRevealed}
-                    canScratch={true}
-                    onReveal={() => revealCard('user')}
-                    participantName="You"
-                  />
-                  
-                  {currentCard.isRevealed && (currentUser?.flashCards?.current || 0) < 2 && (
-                    <div className="mt-4 text-center">
-                      <button
-                        onClick={() => nextCard('user')}
-                        className="inline-flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-                      >
-                        <RotateCcw className="h-4 w-4" />
-                        <span>Next Question</span>
-                      </button>
+                  ) : (
+                    <div className="w-full h-full bg-slate-600 flex items-center justify-center">
+                      <VideoOff className="h-6 w-6 text-slate-400" />
                     </div>
                   )}
+                  
+                  {participant.isSpeaking && (
+                    <div className="absolute inset-0 border-2 border-green-400 rounded-xl animate-pulse" />
+                  )}
                 </div>
+                
+                {/* Participant Info */}
+                <div className="absolute -bottom-2 left-0 right-0 bg-black/60 text-white text-xs px-2 py-1 rounded-b-xl text-center">
+                  {participant.name}
+                </div>
+                
+                {/* Mute indicator */}
+                {participant.isMuted && (
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full">
+                    <MicOff className="h-3 w-3" />
+                  </div>
+                )}
+
+                {/* Flash Card Below Video */}
+                {sessionStarted && participant.flashCards && (
+                  <div className="mt-4">
+                    <ScratchCard
+                      question={participant.flashCards.cards[participant.flashCards.current].question}
+                      category={participant.flashCards.cards[participant.flashCards.current].category}
+                      isRevealed={participant.flashCards.cards[participant.flashCards.current].isRevealed}
+                      canScratch={false}
+                      onReveal={() => {}}
+                      participantName={participant.name}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Center Flash Card Area */}
+          <div className="flex-1 flex items-center justify-center">
+            {sessionStarted && currentCard && (
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-lg w-full">
+                <div className="text-center mb-6">
+                  <h3 className="text-lg font-semibold text-slate-800 mb-2">Your Current Question</h3>
+                  <div className="text-sm text-slate-600">
+                    Card {(currentUser?.flashCards?.current || 0) + 1} of {currentUser?.flashCards?.cards.length || 3}
+                  </div>
+                </div>
+                
+                <ScratchCard
+                  question={currentCard.question}
+                  category={currentCard.category}
+                  isRevealed={currentCard.isRevealed}
+                  canScratch={true}
+                  onReveal={() => revealCard('user')}
+                  participantName="You"
+                />
+                
+                {currentCard.isRevealed && (currentUser?.flashCards?.current || 0) < 2 && (
+                  <div className="mt-4 text-center">
+                    <button
+                      onClick={() => nextCard('user')}
+                      className="inline-flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                      <span>Next Question</span>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
+          </div>
 
-            {/* Participants arranged in circle */}
-            {participants.map((participant, index) => {
-              // Skip user as they're in the center
-              if (participant.id === 'user') return null;
-              
-              // Calculate position in circle
-              const angle = (index * 360) / (participants.length - 1);
-              const radius = 280;
-              const x = Math.cos((angle - 90) * Math.PI / 180) * radius;
-              const y = Math.sin((angle - 90) * Math.PI / 180) * radius;
-              
-              return (
-                <div
-                  key={participant.id}
-                  className="absolute"
-                  style={{
-                    transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`
-                  }}
-                >
-                  {/* Video Window */}
-                  <div className={`w-32 h-24 bg-gradient-to-br from-slate-200 to-slate-300 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                    participant.isSpeaking ? 'border-green-400 shadow-lg shadow-green-400/20 scale-105' : 'border-slate-200'
-                  }`}>
-                    {participant.hasVideo ? (
-                      <div className={`w-full h-full bg-gradient-to-br flex items-center justify-center ${
-                        participant.id === 'ai-0' ? 'from-pink-400 to-rose-500' :
-                        participant.id === 'ai-1' ? 'from-green-400 to-emerald-500' :
-                        participant.id === 'ai-2' ? 'from-purple-400 to-violet-500' :
-                        participant.id === 'ai-3' ? 'from-yellow-400 to-orange-500' :
-                        'from-teal-400 to-cyan-500'
-                      }`}>
-                        <span className="text-white text-lg font-bold">
-                          {participant.name.charAt(0)}
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="w-full h-full bg-slate-600 flex items-center justify-center">
-                        <VideoOff className="h-4 w-4 text-slate-400" />
-                      </div>
-                    )}
-                    
-                    {participant.isSpeaking && (
-                      <div className="absolute inset-0 border-2 border-green-400 rounded-lg animate-pulse" />
-                    )}
-                  </div>
-                  
-                  {/* Participant Info */}
-                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                    {participant.name}
-                  </div>
-                  
-                  {/* Mute indicator */}
-                  {participant.isMuted && (
-                    <div className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full">
-                      <MicOff className="h-2 w-2" />
+          {/* Right Video Panel */}
+          <div className="w-48 flex flex-col space-y-4 ml-6">
+            {otherParticipants.slice(Math.ceil(otherParticipants.length / 2)).map((participant) => (
+              <div key={participant.id} className="relative">
+                {/* Video Window */}
+                <div className={`w-full aspect-[4/3] bg-gradient-to-br from-slate-200 to-slate-300 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                  participant.isSpeaking ? 'border-green-400 shadow-lg shadow-green-400/20 scale-105' : 'border-slate-200'
+                }`}>
+                  {participant.hasVideo ? (
+                    <div className={`w-full h-full bg-gradient-to-br flex items-center justify-center ${
+                      participant.id === 'ai-0' ? 'from-pink-400 to-rose-500' :
+                      participant.id === 'ai-1' ? 'from-green-400 to-emerald-500' :
+                      participant.id === 'ai-2' ? 'from-purple-400 to-violet-500' :
+                      participant.id === 'ai-3' ? 'from-yellow-400 to-orange-500' :
+                      'from-teal-400 to-cyan-500'
+                    }`}>
+                      <span className="text-white text-2xl font-bold">
+                        {participant.name.charAt(0)}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="w-full h-full bg-slate-600 flex items-center justify-center">
+                      <VideoOff className="h-6 w-6 text-slate-400" />
                     </div>
                   )}
-
-                  {/* Flash Card */}
-                  {sessionStarted && participant.flashCards && (
-                    <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 w-40">
-                      <ScratchCard
-                        question={participant.flashCards.cards[participant.flashCards.current].question}
-                        category={participant.flashCards.cards[participant.flashCards.current].category}
-                        isRevealed={participant.flashCards.cards[participant.flashCards.current].isRevealed}
-                        canScratch={false}
-                        onReveal={() => {}}
-                        participantName={participant.name}
-                      />
-                    </div>
+                  
+                  {participant.isSpeaking && (
+                    <div className="absolute inset-0 border-2 border-green-400 rounded-xl animate-pulse" />
                   )}
                 </div>
-              );
-            })}
+                
+                {/* Participant Info */}
+                <div className="absolute -bottom-2 left-0 right-0 bg-black/60 text-white text-xs px-2 py-1 rounded-b-xl text-center">
+                  {participant.name}
+                </div>
+                
+                {/* Mute indicator */}
+                {participant.isMuted && (
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full">
+                    <MicOff className="h-3 w-3" />
+                  </div>
+                )}
+
+                {/* Flash Card Below Video */}
+                {sessionStarted && participant.flashCards && (
+                  <div className="mt-4">
+                    <ScratchCard
+                      question={participant.flashCards.cards[participant.flashCards.current].question}
+                      category={participant.flashCards.cards[participant.flashCards.current].category}
+                      isRevealed={participant.flashCards.cards[participant.flashCards.current].isRevealed}
+                      canScratch={false}
+                      onReveal={() => {}}
+                      participantName={participant.name}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
